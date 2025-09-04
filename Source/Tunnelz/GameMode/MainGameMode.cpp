@@ -114,6 +114,7 @@ void AMainGameMode::OnPlayerDied()
     {
         SaveHighScoreSG->HighScore = Score;
         UGameplayStatics::SaveGameToSlot(SaveHighScoreSG, HIGH_SCORE_SAVE_SLOT_NAME, 0);
+        bHasNewHighScore = true;
     }
 }
 
@@ -128,6 +129,7 @@ void AMainGameMode::SoftResetWorld()
     CurLevel = 0;
     NumAliveEnemies = 0;
     Score = 0;
+    bHasNewHighScore = false;
     if (Levels.Num() > 0)
     {
         NextLevelTimer = Levels[0].DurationSec;
@@ -267,4 +269,11 @@ void AMainGameMode::CollectFrozenEnemies()
     }
 
     Score += FrozenEnemyActors.Num();
+}
+
+int AMainGameMode::GetHighScore() const
+{
+    if (SaveHighScoreSG)
+        return SaveHighScoreSG->HighScore;
+    return 0;
 }

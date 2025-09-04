@@ -70,6 +70,13 @@ public:
         return Score;
     }
 
+    UFUNCTION(BlueprintCallable) int GetHighScore() const;
+
+    UFUNCTION(BlueprintCallable) bool HasNewHighScore() const
+    {
+        return bHasNewHighScore;
+    }
+
     void OnActiveEnemyDestroyed(AActor* const EnemyActor);
 
 protected:
@@ -104,6 +111,7 @@ private:
     float SpawnTimer = 0.f;
     int NumAliveEnemies = 0;
     unsigned int Score = 0;
+    bool bHasNewHighScore = false;
 
     UPROPERTY(Transient)
     TObjectPtr<UHighScoreSaveGame> SaveHighScoreSG = nullptr;
