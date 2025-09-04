@@ -105,5 +105,6 @@ private:
     int NumAliveEnemies = 0;
     unsigned int Score = 0;
 
-    UHighScoreSaveGame* SaveHighScoreSG = nullptr;
+    UPROPERTY(Transient)
+    TObjectPtr<UHighScoreSaveGame> SaveHighScoreSG = nullptr;
 };
