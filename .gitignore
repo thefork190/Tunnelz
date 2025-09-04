@@ -16,6 +16,7 @@ Binaries/
 DerivedDataCache/
 Intermediate/
 Saved/
+Build/
 DerivedDataCacheBoot.ddc
 
 # Build artifacts
