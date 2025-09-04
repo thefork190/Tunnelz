@@ -1,0 +1,99 @@
+# Visual Studio / Rider / Xcode
+.vs/
+.vscode/
+.idea/
+*.suo
+*.sdf
+*.sln
+*.opensdf
+*.VC.db
+*.VC.opendb
+*.xcodeproj/
+*.xcworkspace/
+
+# Unreal build files
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+DerivedDataCacheBoot.ddc
+
+# Build artifacts
+*.VC.db
+*.log
+*.pdb
+*.ipdb
+*.iobj
+*.db
+*.mdb
+*.dylib
+*.dll
+*.exe
+*.app
+*.so
+*.a
+
+# Platform specific
+*.app
+*.apk
+*.ipa
+
+# Configuration / local settings
+*.iml
+*.user
+*.userprefs
+
+# Mac specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
+
+# Unreal autosaves / backups
+*_BuiltData.uasset
+*_BuiltData.uexp
+*.umap.autosave
+*.uasset.autosave
+*.tmp
+
+# Crash reports
+CrashReportClient/
+
+# Unreal Plugins build outputs
+Plugins/*/Intermediate/
+Plugins/*/Binaries/
+Plugins/*/Saved/
+
+# Optional: Ignore Rider/CLion generated cmake
+CMakeFiles/
+cmake-build-*/
+
+# If using Perforce or Rider integration
+.idea/
+
+# Visual Studio upgrade logs/configs
+.vsconfig
+UpgradeLog*.htm
+enc_temp_folder/
+
+# Dump Files
+*.dmp
+*.udmp
+*.psess
+*.vspx
+
+# Engine backups
+Backup/
+Config/DefaultEditorPerProjectUserSettings.ini
+Config/DefaultEditor.ini
+Saved/Autosaves/
+Saved/Backup/
+
+# Version Control Caches
+.vsconfig
+*.VC.db-shm
+*.VC.db-wal
+
+# Build tools tmp files
+.uprojectdirs
+*.xcodeproj/*
