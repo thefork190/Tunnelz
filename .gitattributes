@@ -1,0 +1,122 @@
+##############################################################################
+# Core: Normalize text to LF in the repo; auto-convert on checkout per-OS
+##############################################################################
+*                 text=auto eol=lf
+
+# Common script types
+*.sh              text eol=lf
+*.bash            text eol=lf
+*.ps1             text eol=lf
+*.bat             text eol=crlf
+*.cmd             text eol=crlf
+
+# Explicitly mark typical code/text as text
+*.h               text
+*.hpp             text
+*.hh              text
+*.c               text
+*.cc              text
+*.cpp             text
+*.cs              text
+*.java            text
+*.py              text
+*.js              text
+*.ts              text
+*.json            text
+*.xml             text
+*.yml             text
+*.yaml            text
+*.ini             text
+*.txt             text
+*.md              text
+*.csv             text
+*.uproject        text
+*.uplugin         text
+*.uprojectdirs    text
+
+##############################################################################
+# Unreal: Track binary assets with LFS + lockable (prevents parallel edits)
+##############################################################################
+*.uasset          filter=lfs diff=lfs merge=lfs -text lockable
+*.umap            filter=lfs diff=lfs merge=lfs -text lockable
+
+# Plugin-distributed assets (same treatment):
+Plugins/**/Content/**/*.uasset filter=lfs diff=lfs merge=lfs -text lockable
+Plugins/**/Content/**/*.umap   filter=lfs diff=lfs merge=lfs -text lockable
+
+##############################################################################
+# Media & large binaries via LFS
+##############################################################################
+# Audio
+*.wav            filter=lfs diff=lfs merge=lfs -text
+*.aif            filter=lfs diff=lfs merge=lfs -text
+*.aiff           filter=lfs diff=lfs merge=lfs -text
+*.flac           filter=lfs diff=lfs merge=lfs -text
+*.ogg            filter=lfs diff=lfs merge=lfs -text
+*.opus           filter=lfs diff=lfs merge=lfs -text
+*.mp3            filter=lfs diff=lfs merge=lfs -text
+
+# Images / textures
+*.png            filter=lfs diff=lfs merge=lfs -text
+*.jpg            filter=lfs diff=lfs merge=lfs -text
+*.jpeg           filter=lfs diff=lfs merge=lfs -text
+*.tga            filter=lfs diff=lfs merge=lfs -text
+*.tif            filter=lfs diff=lfs merge=lfs -text
+*.tiff           filter=lfs diff=lfs merge=lfs -text
+*.exr            filter=lfs diff=lfs merge=lfs -text
+*.hdr            filter=lfs diff=lfs merge=lfs -text
+*.bmp            filter=lfs diff=lfs merge=lfs -text
+*.psd            filter=lfs diff=lfs merge=lfs -text
+*.ai             filter=lfs diff=lfs merge=lfs -text
+
+# 3D / video / misc big binaries
+*.fbx            filter=lfs diff=lfs merge=lfs -text
+*.obj            filter=lfs diff=lfs merge=lfs -text
+*.abc            filter=lfs diff=lfs merge=lfs -text
+*.uasset.import  filter=lfs diff=lfs merge=lfs -text
+*.mp4            filter=lfs diff=lfs merge=lfs -text
+*.mov            filter=lfs diff=lfs merge=lfs -text
+*.avi            filter=lfs diff=lfs merge=lfs -text
+
+##############################################################################
+# Mark other binaries as binary (-text)
+##############################################################################
+*.png             -text
+*.jpg             -text
+*.jpeg            -text
+*.tga             -text
+*.tif             -text
+*.tiff            -text
+*.exr             -text
+*.hdr             -text
+*.bmp             -text
+*.psd             -text
+*.ai              -text
+*.wav             -text
+*.aif             -text
+*.aiff            -text
+*.flac            -text
+*.ogg             -text
+*.opus            -text
+*.mp3             -text
+*.fbx             -text
+*.obj             -text
+*.abc             -text
+*.mp4             -text
+*.mov             -text
+*.avi             -text
+*.zip             -text
+*.7z              -text
+*.rar             -text
+*.pak             -text
+*.dll             -text
+*.dylib           -text
+*.so              -text
+*.pdb             -text
+
+##############################################################################
+# Diff/merge hints (optional)
+##############################################################################
+#*.ini            text diff=ini
+#*.uproject       text diff=ini
+#*.uplugin        text diff=ini
