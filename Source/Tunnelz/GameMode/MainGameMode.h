@@ -6,6 +6,7 @@
 #include "MainGameMode.generated.h"
 
 class AEnemyActor;
+class UHighScoreSaveGame;
 
 UENUM(BlueprintType)
 enum class ERunPhase : uint8 { Menu, Playing, GameOver };
@@ -54,7 +55,7 @@ public:
 
     UFUNCTION(BlueprintCallable) void StartRun();      // Start / Retry
     UFUNCTION(BlueprintCallable) void ShowMenu();      // Menu after death or at boot
-    UFUNCTION()                  void OnPlayerDied();  // Called by pawn
+    UFUNCTION(BlueprintCallable) void OnPlayerDied();  // Called by pawn
     UFUNCTION(BlueprintCallable) void CollectFrozenEnemies();
 
     virtual void Tick(float DeltaTime) override;
@@ -103,4 +104,6 @@ private:
     float SpawnTimer = 0.f;
     int NumAliveEnemies = 0;
     unsigned int Score = 0;
+
+    UHighScoreSaveGame* SaveHighScoreSG = nullptr;
 };

@@ -6,12 +6,29 @@
 
 #include "../Player/AMainPawn.h"
 #include "../Enemies/EnemyActor.h"
+#include "../SaveGame/HighScoreSaveGame.h"
+
+#define HIGH_SCORE_SAVE_SLOT_NAME TEXT("HighScore")
 
 void AMainGameMode::BeginPlay()
 {
     Super::BeginPlay();
     PrimaryActorTick.bCanEverTick = true;
     PrimaryActorTick.bStartWithTickEnabled = true;
+
+    // High score saving
+    if (UGameplayStatics::DoesSaveGameExist(HIGH_SCORE_SAVE_SLOT_NAME, 0))
+    {
+        USaveGame* Loaded = UGameplayStatics::LoadGameFromSlot(HIGH_SCORE_SAVE_SLOT_NAME, 0);
+        SaveHighScoreSG = Cast<UHighScoreSaveGame>(Loaded);
+    }
+
+    if (!SaveHighScoreSG)
+    {
+        SaveHighScoreSG = Cast<UHighScoreSaveGame>(UGameplayStatics::CreateSaveGameObject(UHighScoreSaveGame::StaticClass()));
+    }
+
+    check(SaveHighScoreSG);
     
     // Calculate spawn enemy aabb
     EnemySpawnAABB.Max.X = ArenaSize.X - SpawnOffsetFromArenaWall.X;
@@ -90,12 +107,14 @@ void AMainGameMode::OnPlayerDied()
 {
     Phase = ERunPhase::GameOver;
 
-    // small delay for death FX (optional)
-    FTimerHandle Th;
-    GetWorldTimerManager().SetTimer(Th, [this]()
-        {
-            ShowMenu();
-        }, 0.5f, false);
+    ShowMenu();
+
+    // Save high score if needed
+    if (SaveHighScoreSG && Score > SaveHighScoreSG->HighScore)
+    {
+        SaveHighScoreSG->HighScore = Score;
+        UGameplayStatics::SaveGameToSlot(SaveHighScoreSG, HIGH_SCORE_SAVE_SLOT_NAME, 0);
+    }
 }
 
 void AMainGameMode::SoftResetWorld()
