@@ -77,6 +77,9 @@ public:
         return bHasNewHighScore;
     }
 
+    UFUNCTION(BlueprintImplementableEvent, Category = "Game Events")
+    void OnRunPhaseChangeEvent(ERunPhase RunPhase);
+
     void OnActiveEnemyDestroyed(AActor* const EnemyActor);
 
 protected:

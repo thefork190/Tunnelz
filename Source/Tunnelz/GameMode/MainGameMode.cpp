@@ -65,6 +65,7 @@ void AMainGameMode::BeginPlay()
 void AMainGameMode::ShowMenu()
 {
     Phase = ERunPhase::Menu;
+    OnRunPhaseChangeEvent(Phase);
 
     if (MenuWidget)
     {
@@ -101,11 +102,13 @@ void AMainGameMode::StartRun()
     SoftResetWorld();
 
     Phase = ERunPhase::Playing;
+    OnRunPhaseChangeEvent(Phase);
 }
 
 void AMainGameMode::OnPlayerDied()
 {
     Phase = ERunPhase::GameOver;
+    OnRunPhaseChangeEvent(Phase);
 
     ShowMenu();
 
